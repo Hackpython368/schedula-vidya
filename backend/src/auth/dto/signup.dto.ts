@@ -11,14 +11,14 @@ import { role } from 'src/role/enum/role.enum';
 export class SignupDto {
 
   @IsString()
-  name: string;
+  name!: string;
 
   @IsEmail()
-  email: string;
+  email!: string;
 
   @MinLength(6)
-  password: string;
+  password!: string;
 
   @IsEnum(role)
-  role:role;
+  role!:role;
 }
