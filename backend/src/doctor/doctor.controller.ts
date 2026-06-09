@@ -9,6 +9,12 @@ import { doctorData } from './Dto/doctor.dto';
 export class DoctorController {
   constructor(private readonly DoctorServices : DoctorService){}
 
+  @Get("")
+  listDoctor() {
+    return this.DoctorServices.listDoctor()
+  }
+
+
     @Get('profile')
 
 @UseGuards(

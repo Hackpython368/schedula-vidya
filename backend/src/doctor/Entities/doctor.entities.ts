@@ -28,4 +28,9 @@ export class Doctor {
 
   @Column('decimal')
   consultationFees!: number;
+
+  @Column({
+    default : true
+  })
+  availability! : boolean;
 }

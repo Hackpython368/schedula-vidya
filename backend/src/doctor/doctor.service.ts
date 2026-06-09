@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Doctor } from './Entities/doctor.entities';
 import { doctorData } from './Dto/doctor.dto';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class DoctorService {
@@ -72,5 +73,21 @@ async updateProfile(
     ...doctor_created,
     user : userId
   }
+}
+
+async listDoctor(){
+  const doctor_list = await this.doctorRepo.find({
+    relations : {
+      user : true
+    }
+  })
+  return doctor_list.map((doctor_list) => ({
+    id : doctor_list.id,
+    fullname : doctor_list.user.name,
+    specialization : doctor_list.specialization,
+    experience : doctor_list.experience,
+    consultent_fee : doctor_list.consultationFees,
+    availability : doctor_list.availability
+  }))
 }
 }
